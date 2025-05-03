@@ -7,9 +7,9 @@ import time
 import pandas as pd
 import os
 
-# ✅ Initialize the driver
+# Initialize the driver
 driver = webdriver.Chrome()
-# ✅ Dictionary of genre and URL
+# Dictionary of genre and URL
 urls = {
      "fantasy"  :"https://www.imdb.com/search/title/?title_type=feature&release_date=2024-01-01,2024-12-31&genres=fantasy",
      "Sci-fi"  :"https://www.imdb.com/search/title/?title_type=feature&release_date=2024-01-01,2024-12-31&genres=sci-fi",
@@ -17,7 +17,7 @@ urls = {
      "Animation":"https://www.imdb.com/search/title/?title_type=feature&release_date=2024-01-01,2024-12-31&genres=animation",
      "family"   :"https://www.imdb.com/search/title/?title_type=feature&release_date=2024-01-01,2024-12-31&genres=family"
 }
-# ✅ Folder to save CSVs
+# Folder to save CSVs
 output_folder = "D:/imdb_mdb_2024"
 os.makedirs(output_folder, exist_ok=True)
 
@@ -32,12 +32,12 @@ def click_load_more():
         print("⛔ No more 'Load More' button or error:", {e})
         return False
 
-# ✅ Loop through each genre
+# Loop through each genre
 for genre_u, url in urls.items():
     driver.get(url)
     time.sleep(5)
     while True:
-        if not click_load_more():  # 👈 Keep trying until the button disappears
+        if not click_load_more():  # Keep trying until the button disappears
             print("✅ All movies loaded.")
             break
         else:
@@ -76,7 +76,7 @@ for genre_u, url in urls.items():
         except Exception as e:
             print(f"❌ Error in movie {idx}: {e}")
             continue
-    # ✅ Save to CSV
+    # Save to CSV
     mov_col = ['Title', 'Genre', 'Ratings', 'Voting_counts', 'Duration']
     df = pd.DataFrame(movie_dict, columns=mov_col)
     print(df)
@@ -84,5 +84,5 @@ for genre_u, url in urls.items():
     file_path = f"{output_folder}/{genre_u}.csv"
     df.to_csv(file_path, index=False)
     print(f"✅ Saved {len(df)} movies to {file_path}\n")
-#✅ Close driver
+#Close driver
 driver.quit()
