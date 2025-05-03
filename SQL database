@@ -1,0 +1,41 @@
+show databases;
+use imdb_2024;
+show tables;
+SELECT Title, COUNT(*) as count;
+select * from IMDB_Movies_2024;
+SELECT * FROM IMDB_Movies_2024 LIMIT 10000;
+Select * from IMDB_Movies_2024 ORDER BY Ratings DESC, Voting_counts DESC limit 10;
+
+SELECT Genre, COUNT(*) AS Movie_Count FROM IMDB_movies_2024 GROUP BY Genre ORDER BY Movie_Count DESC;
+
+SELECT Title, Duration FROM IMDB_Movies_2024 ORDER BY Duration asc LIMIT 1;
+
+SELECT * FROM IMDB_Movies_2024 WHERE Ratings >= 8.0   AND Voting_counts >= 10000 ORDER BY Ratings DESC, 
+Voting_counts DESC LIMIT 10;
+
+SELECT * FROM IMDB_Movies_2024 WHERE (Genre LIKE '%Fantasy%' OR Genre LIKE '%Sci-Fi%') ORDER BY Ratings DESC;
+
+select Ratings,Voting_counts from IMDB_Movies_2024 WHERE Ratings > 0 AND Voting_counts > 0;
+SELECT DISTINCT Genre FROM IMDB_Movies_2024;
+
+SELECT * FROM IMDB_Movies_2024 ORDER BY Ratings DESC, Voting_counts DESC LIMIT 10;
+
+SELECT Genre, COUNT(*) AS Movie_Count FROM IMDB_Movies_2024 GROUP BY Genre ORDER BY Movie_Count DESC;
+
+SELECT Genre, AVG(Duration) AS Duration FROM IMDB_Movies_2024 GROUP BY Genre ORDER BY Duration DESC;
+
+SELECT Genre, AVG(Voting_counts) AS Avg_Votes
+FROM IMDB_Movies_2024 GROUP BY Genre ORDER BY Avg_Votes DESC;
+
+SELECT Ratings FROM IMDB_Movies_2024;
+SELECT Genre, Ratings, Title FROM IMDB_Movies_2024 WHERE Ratings >= 8.0;
+SELECT Genre, SUM(Voting_counts) AS Total_Votes FROM IMDB_Movies_2024 GROUP BY Genre ORDER BY Total_Votes DESC;
+
+SELECT Title, Genre,Duration FROM IMDB_Movies_2024 ORDER BY Duration ASC LIMIT 1;
+SELECT Title, Genre, Duration FROM IMDB_Movies_2024 ORDER BY Duration DESC LIMIT 1;
+
+SELECT Genre, AVG(Ratings) AS Avg_Ratings FROM IMDB_Movies_2024 GROUP BY Genre
+ORDER BY Avg_Ratings DESC;
+
+SELECT Genre,Ratings, Voting_counts, Title FROM IMDB_Movies_2024 WHERE Ratings IS NOT NULL AND Voting_counts IS NOT NULL
+ORDER BY Voting_counts DESC;
