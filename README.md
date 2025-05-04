@@ -42,15 +42,15 @@ Link used in this project is-
      "Animation":"https://www.imdb.com/search/title/?title_type=feature&release_date=2024-01-01,2024-12-31&genres=animation",
      "family"   :"https://www.imdb.com/search/title/?title_type=feature&release_date=2024-01-01,2024-12-31&genres=family"
    
-●	Scraping Method: Use Selenium to extract the following fields:
+●	Scraping Method: Used Selenium to extract the following fields:
 ○	Movie Name
 ○	Genre
 ○	Ratings
 ○	Voting Counts
 ○	Duration
-●	Genre-wise Storage: Save extracted data as individual CSV files for each genre.
-●	Combine Data: Merge all genre-wise CSVs into a single DataFrame.
-●	SQL Storage: Store the merged dataset into an SQL database for querying and future analysis.
+●	Genre-wise Storage: Saved extracted data as individual CSV files for each genre.
+●	Combine Data: Merged all genre-wise CSVs into a single DataFrame.
+●	SQL Storage: Stored the merged dataset into an SQL database for querying and future analysis.
 
 Data Analysis, Visualization, and Filtration
 ----------------------------------------------
