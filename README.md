@@ -34,7 +34,14 @@ Business Use Cases:
 Approach:
 --------
 1. Data Scraping and Storage
-●	Data Source: IMDb 2024 Movies page (link).
+●	Data Source: IMDb 2024 Movies page (link) ->https://www.imdb.com/search/title/?title_type=feature&release_date=2024-01-01,2024-12-31
+Link used in this project is-
+     "fantasy"  :"https://www.imdb.com/search/title/?title_type=feature&release_date=2024-01-01,2024-12-31&genres=fantasy",
+     "Sci-fi"  :"https://www.imdb.com/search/title/?title_type=feature&release_date=2024-01-01,2024-12-31&genres=sci-fi",
+     "history"  :"https://www.imdb.com/search/title/?title_type=feature&release_date=2024-01-01,2024-12-31&genres=history",
+     "Animation":"https://www.imdb.com/search/title/?title_type=feature&release_date=2024-01-01,2024-12-31&genres=animation",
+     "family"   :"https://www.imdb.com/search/title/?title_type=feature&release_date=2024-01-01,2024-12-31&genres=family"
+   
 ●	Scraping Method: Use Selenium to extract the following fields:
 ○	Movie Name
 ○	Genre
