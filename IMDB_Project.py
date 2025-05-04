@@ -1,11 +1,11 @@
-from selenium.webdriver.support.ui import WebDriverWait   #wait fot the elements to appear to become clickable before interacting with dynamic webpage like IMDB
-from selenium.webdriver.support import expected_conditions as EC  #same to wait 
-from selenium import webdriver               #Open the browser                     
-from selenium.webdriver.common.by import By  # By is used to find the specific elements like CSS, XPATH, etc.. 
-from selenium.webdriver.common.action_chains import ActionChains # To do actions like Hoving and dynamically clicking
-import time  # time used to add delayes using sleep
-import pandas as pd  # pandas to create datatables (df) and save in CSV format
-import os  # used to manage folder and file path
+from selenium.webdriver.support.ui import WebDriverWait                  #wait fot the elements to appear to become clickable before interacting with dynamic webpage like IMDB
+from selenium.webdriver.support import expected_conditions as EC         #same to wait 
+from selenium import webdriver                                           #Open the browser                     
+from selenium.webdriver.common.by import By                              # By is used to find the specific elements like CSS, XPATH, etc.. 
+from selenium.webdriver.common.action_chains import ActionChains         # To do actions like Hoving and dynamically clicking
+import time                                                              # time used to add delayes using sleep
+import pandas as pd                                                      # pandas to create datatables (df) and save in CSV format
+import os                                                                # used to manage folder and file path
 
 # Initialize the driver
 driver = webdriver.Chrome()  
@@ -55,34 +55,32 @@ for genre_u, url in urls.items():           # loop thorugh Key and Values in Url
                     EC.presence_of_element_located((By.XPATH, "//*[@id=\"__next\"]/main/div[2]/div[3]/section/section/div/section/section/div[2]/div/section/div[1]/div/div/div[2]/button[3]/span"))
                 ).text 
             except:
-                genre = None            
+                genre = None            #catch exception if no Genre found in that XPATH
             try:
                 rating = WebDriverWait(movie, 3).until( # Extract the rating details 
                     EC.presence_of_element_located((By.XPATH, ".//div/div/div/div[1]/div[2]/span/div/span/span[1]"))).text
             except:
-                rating = None
+                rating = None           #catch exception if no rating found in that XPATH
             try:
                 voting = WebDriverWait(movie, 3).until( #Extract the Voting details
                     EC.presence_of_element_located((By.XPATH, ".//div/div/div/div[1]/div[2]/span/div/span/span[2]"))).text
             except:
-                voting = None
+                voting = None           #catch exception if no voting counts found in that XPATH
             try:
                 duration = WebDriverWait(movie, 3).until( # Extract the duration details
                     EC.presence_of_element_located((By.XPATH, ".//div/div/div/div[1]/div[2]/div[2]/span[2]"))).text                
             except:
-                duration = None
-                
+                duration = None         #catch exception if no duration found in that XPATH
             title = " ".join(title.split()[1:])  # split only the movie title
             movie_dict.append([title, genre, rating, voting, duration]) # add the extracted movie details to the list
         except Exception as e: # if any of the during movie scraping, that catches the exception
-            print(f"Error in movie {idx}: {e}") 
-            continue
-    #Save to CSV
+            print(f"Error in movie {idx}: {e}") #message if no movie available
+            continue                            #continue
+    #Save files to CSV
     mov_col = ['Title', 'Genre', 'Ratings', 'Voting_counts', 'Duration'] # column name matches with list appended
     df = pd.DataFrame(movie_dict, columns=mov_col) # create df from movie_dict
     print(df)                                      # print the scraped movie data 
     file_path = f"{output_folder}/{genre_u}.csv"   # output_folder- folder where need to create particular genre.csv
     df.to_csv(file_path, index=False)              # csv() - saves df into CSV format
     print(f"Saved {len(df)} movies to {file_path}\n") # message to print total no.of movies saved in that particular csv
-#Close driver
-driver.quit()
+driver.quit()                                       #Close driver
