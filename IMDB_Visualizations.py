@@ -20,7 +20,7 @@ st.subheader("1. Top 10 Movies with Rating and Voting counts")
 query_top10 = """SELECT * FROM IMDB_Movies_2024 ORDER BY Ratings DESC, Voting_counts DESC LIMIT 10;"""
 top10_df = pd.read_sql(query_top10, engine)
 st.dataframe(top10_df)
-fig_bar = px.bar(top10_df,x='Title',y='Voting_counts',color='Ratings',title='Top 10 Movies by Ratings and Voting counts',
+fig_bar = px.bar(top10_df,x='Title',y='Voting_counts',color='Ratings',title='Top 10 Rated movies',
                  hover_data=['Voting_counts'])
 st.plotly_chart(fig_bar)
 
