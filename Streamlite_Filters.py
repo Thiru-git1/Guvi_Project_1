@@ -41,7 +41,7 @@ voting_side_filter = st.sidebar.slider("Select Voting count:", min_value=1, max_
 query = f"""SELECT * FROM IMDB_Movies_2024
 WHERE Voting_counts >={voting_side_filter}
 ORDER BY Voting_counts asc;"""
-st.subheader(f"2.Display movie based on Voting counts>= {voting_side_filter}")
+st.subheader(f"3.Display movie based on Voting counts>= {voting_side_filter}")
 voting_count_df=pd.read_sql(query,engine)
 st.dataframe(voting_count_df)
 
